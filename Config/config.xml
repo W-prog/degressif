@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config xmlns="http://thelia.net/schema/dic/config"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://thelia.net/schema/dic/config http://thelia.net/schema/dic/config/thelia-1.0.xsd">
+
+    <loops>
+        <loop name="degressif" class="Degressif\Loop\DegressifLoop" />
+    </loops>
+
+    <forms>
+        <!--
+        <form name="MyFormName" class="Degressif\Form\MySuperForm" />
+        -->
+    </forms>
+
+    <commands>
+        <!--
+        <command class="Degressif\Command\MySuperCommand" />
+        -->
+    </commands>
+
+    <services>
+        <service id="degressif.listener" class="Degressif\EventListeners\DegressifListener" scope="request">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="thelia.securityContext"/>
+            <argument type="service" id="request"/>
+        </service>
+    </services>
+
+    <hooks>
+        <hook id="degressif.hook.front" class="Degressif\Hook\Front" scope="request" >
+            <tag name="hook.event_listener" event="product.details-top" method="onProductDetailsTop" />
+            <tag name="hook.event_listener" event="product.details-bottom" method="onProductDetailsBottom" />
+            <tag name="hook.event_listener" event="product.additional" method="onProductAdditional" />
+            <tag name="hook.event_listener" event="product.stylesheet" />
+            <tag name="hook.event_listener" event="module.configuration" type="back" method="onModuleConfigure" />
+        </hook>
+    </hooks>
+
+    <!--
+    <exports>
+
+    </exports>
+    -->
+
+    <!--
+    <imports>
+
+    </imports>
+    -->
+</config>

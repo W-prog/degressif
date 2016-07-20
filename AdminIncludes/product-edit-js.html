@@ -1,0 +1,156 @@
+<script type="text/javascript">
+
+    (function($){
+
+        var config = {
+            'urlAdd': '{url path="/admin/module/degressif/add"}',
+            'urlDelete': '{url path="/admin/module/degressif/delete"}',
+            'urlSave': '{url path="/admin/module/degressif/save"}'
+        };
+
+        {literal}
+        $(document).ready(function () {
+
+            //var tpl = _.template($("#tpl-slice").html());
+            var tpl = $("#tpl-slice").html();
+
+            var showMessage = function showMessage(message) {
+                $('#wprog_dialog')
+                        .find('.modal-body')
+                        .html(message)
+                        .end()
+                        .modal("show");
+            };
+
+            var getSliceData = function getSliceData($slice) {
+                var data = {
+                    id: $slice.data("id"),
+                    product_id: $slice.data("product_id"),
+                    ref: $slice.data("ref"),
+                    tranchemin: $slice.find(".js-slice-tranchemin").first().val(),
+                    tranchemax: $slice.find(".js-slice-tranchemax").first().val(),
+                    prix: $slice.find(".js-slice-prix").first().val(),
+                    prix2: $slice.find(".js-slice-prix2").first().val()
+                };
+
+                // console.log(data);
+                return data;
+            };
+
+
+            // Ajouter un nouvelle tranche
+            $('.js-slice-add').on('click', function(){
+
+                var $slice = $(this).parents('tr').first();
+                var data = getSliceData($slice);
+                // console.log('add : ' + data);
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    data: data,
+                    url: config.urlAdd
+                }).done(function(data, textStatus, jqXHR){
+                    var sliceHtml = '';
+                    if (data.success) {
+                        // reset form
+                        $slice.find('input').val('');
+                        // add slice
+                        // sliceHtml = tpl(data.slice); // tpl n'est pas encore définit
+                        //$(sliceHtml).insertBefore($slice);
+                        //$('#message').empty().html(data.degressif('<br>'));
+
+                        // Recharger la page avec le nouvel enregistrement
+                        location.reload(true);
+                        showMessage('Tranche créée avec succès<br>');
+
+                    } else {
+                        showMessage(data.message.join('<br>'));
+                        //console.log(data.message.join('<br>'));
+                        $('#message').empty().html(data.message.join('<br>'));
+
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    showMessage(textStatus);
+                });
+            });
+
+            // Enregistrer une nouvelle tranche
+            $('.js-slice-save').on('click', function(){
+                var $slice = $(this).parents('tr').first();
+                var data = getSliceData($slice);
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    data: data,
+                    url: config.urlAdd
+                }).done(function(data, textStatus, jqXHR){
+                    if (!data.success) {
+                        showMessage(data.message.join('<br>'));
+                    } else {
+                        // var sliceHtml = tpl(data.slice);
+                        //$(sliceHtml).insertBefore($slice);
+                        //$slice.remove();
+
+                        showMessage('Tranche enregistrée avec succès<br>');
+                        // location.reload(true); // Pour l'instant on recharge +
+                        var href = document.location.href;
+                        if (href.indexOf("current_tab")==-1){
+                            location.replace(document.location.href + '&current_tab=modules');
+                        }else{
+                            location.replace(document.location.href);
+                        }
+
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    showMessage(textStatus);
+                });
+            });
+
+            // On supprime une tranche
+            $('.js-slice-delete').on('click', function(){
+
+                if (!confirm('Etes-vous de vouloir supprimer cette tranche ?')){
+                    return false;
+                    exit();
+                }
+
+                var $slice = $(this).parents('tr').first();
+                var data = getSliceData($slice);
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    data: data,
+                    url: config.urlDelete
+                }).done(function(data, textStatus, jqXHR){
+                    var sliceHtml = '';
+                    if (data.success) {
+                        $slice.remove();
+                        /*
+                        console.log("remove : " + data);
+                        var href = document.location.href;
+                        console.log("redirection : " + href);
+                        if (href.indexOf("current_tab")==-1){
+                            location.replace(document.location.href + '&current_tab=modules');
+                        }else{
+                            location.replace(document.location.href);
+                        }
+                        */
+
+                    } else {
+                        showMessage(data.message);
+                    }
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    showMessage(textStatus);
+                });
+            });
+
+        });
+        {/literal}
+
+
+    })(jQuery);
+
+</script>

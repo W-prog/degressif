@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" name="thelia"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="../../../core/vendor/propel/propel/resources/xsd/database.xsd" >
+
+    <table name="degressif_products" namespace="Degressif\Model">
+        <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+        <column name="product_id" required="true" type="INTEGER" />
+        <column name="ref" type="VARCHAR" />
+        <column name="tranchemin" type="FLOAT" />
+        <column name="tranchemax" type="FLOAT" />
+        <column name="prix" type="FLOAT" />
+        <column name="prix2" type="FLOAT" />
+        <foreign-key foreignTable="product" name="fk_product_id" onDelete="NO ACTION" onUpdate="NO ACTION">
+            <reference foreign="id" local="product_id" />
+        </foreign-key>
+        <index name="product_id">
+            <index-column name="product_id" />
+        </index>
+        <index name="product_id_tranches">
+            <index-column name="product_id" />
+            <index-column name="tranchemin" />
+            <index-column name="tranchemax" />
+        </index>
+        <index name="ref_id_tranches">
+            <index-column name="ref" />
+            <index-column name="tranchemin" />
+            <index-column name="tranchemax" />
+        </index>
+        <behavior name="timestampable" />
+    </table>
+    <external-schema filename="local/config/schema.xml" referenceOnly="true" />
+</database>

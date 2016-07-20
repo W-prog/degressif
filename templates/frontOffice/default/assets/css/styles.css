@@ -1,0 +1,47 @@
+/***** Feuille de style Degressif ******/
+.fc_green{  color: #5cb85c; }
+.fc_blue{   color:#00A6D5;  }
+.fc_orange{ color:#f49a17;  }
+.fc_gris{color: #7a7a7a;}
+.fs_8{font-size: 8px;}
+.barre{text-decoration: line-through; }
+.italic{font-style: italic; }
+.hidden{ display: none;}
+.clear{ clear: both;}
+.hspace20{ clear: both; height:20px;}
+.margt5{ margin-top:5px;}
+.margt10{ margin-top:10px;}
+.margt20{ margin-top:20px;}
+.margt30{ margin-top:30px;}
+.margb5{ margin-bottom:5px;}
+.margb10{ margin-bottom:10px;}
+.margb20{ margin-bottom:20px;}
+.margb30{ margin-bottom:30px;}
+
+.prix{
+    font-size: 14px;line-height: 25px;font-style: normal;font-weight: 400;color: #f49a17;
+}
+.prix_barre{
+    font-size: 14px;line-height: 25px;font-style: italic;font-weight: 400; text-decoration: line-through; color: #7a7a7a;
+}
+
+#product-details ul{
+    padding:0px;
+}
+
+#product-details ul li.quantity_price{
+    list-style-type:none;
+    margin-left:25px;
+    list-style-image : url('http://www.w-prog.com/creation-site-web/images/puce-wprog.png');
+}
+
+#degressif_cart{
+    margin-top: 30px;
+    color:#fff;
+    font-size:16px;
+    background-color:#f49a17;
+    border:1px solid #333;
+    padding:10px;
+    height:60px;
+    line-height: 40px;
+}

@@ -43,4 +43,4 @@ N'hésitez pas à contacter votre interlocuteur unique willy@w-prog.com
 <input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne">
 <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 </form>
-Une facture vous sera envoyée à réception de votre règlement.# degressif
+Une facture vous sera envoyée à réception de votre règlement.

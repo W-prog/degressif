@@ -19,6 +19,10 @@ Une fois le module activé.
 Allez dans l'onglet "Module" de votre fiche produit et saisissez les tranches de quantité "Min" et "Max" ainsi que le "prix" associé.
 Vous pouvez également saisir le prix en promotion.
 
+## Démonstration
+
+<a href="http://thelia.w-prog.com/?view=product&lang=fr_FR&product_id=173" target="_blank">Voir le module en action</a>
+
 # Vous souhaitez aller plus loin ?
 
 Ce module a été produit gracieusement pour la communauté Thelia.

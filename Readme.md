@@ -21,7 +21,7 @@ Vous pouvez également saisir le prix en promotion.
 
 ## Démonstration
 
-<a href="http://thelia.w-prog.com/?view=product&lang=fr_FR&product_id=173" target="_blank">Voir le module en action</a>
+<a href="http://thelia.w-prog.com/?view=product&lang=fr_FR&product_id=173" target="_blank">Voir le module Degressif en action</a>
 
 # Vous souhaitez aller plus loin ?
 
